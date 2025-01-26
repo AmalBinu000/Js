@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <button onclick="playGame('Head')">Heads</button>
+    <button onclick="playGame('Tail')">Tails</button>
+
+    <script>
+
+        let result = '';
+        function playGame(playerChoice){
+
+            const computerPick = computerChoice()
+
+            if (playerChoice === 'Head'){
+                if (computerPick === 'Head'){
+                    result = 'You win'
+                }else{
+                    result = 'You lose'
+                }
+            }else if (playerChoice === 'Tail') {
+                if (computerPick === 'Tail'){
+                    result = 'You win'
+                }else{
+                    result = 'You lose'
+                }
+            }
+            alert(`You choice ${playerChoice} and computer selected ${computerPick},${result}`)
+        }
+
+        function computerChoice(){
+
+            const randomToss = Math.random();
+
+            if (randomToss > 1/2){
+                return('Head')
+            } else{
+                return('Tail')
+            }
+        }
+
+    </script>
+</body>
+</html>

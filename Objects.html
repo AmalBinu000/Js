@@ -20,29 +20,54 @@
         // Products.instock = true
         // console.log(Products)
 
-        const Product2 = {
-            name :'shirt',
-            price : 1000,
-            rating : {
-                star : 4.5,
-                count : 58
-            },
-            fun : function function1(){
-                console.log('This is function')
-            }
+        // const Product2 = {
+        //     name :'shirt',
+        //     price : 1000,
+        //     rating : {
+        //         star : 4.5,
+        //         count : 58
+        //     },
+        //     fun : function function1(){
+        //         console.log('This is function')
+        //     }
 
+        // }
+
+        // console.log(Product2['name'])
+        // console.log(Product2.rating)
+        // console.log(Product2.rating.count)
+        // Product2.fun();
+
+        // console.log(JSON.stringify(Product2))
+        // console.log(typeof JSON.stringify(Product2))
+        
+        // const jsonString = JSON.stringify(Product2)
+        // console.log(JSON.parse(jsonString))
+
+        // const object = {
+        //     message : 'good job!'
+        // }
+
+        // // const message = object.message
+        // const {message} = object
+        // console.log(message)
+
+        const object = {
+            message : 'good job!',
+            price : 1000
         }
 
-        console.log(Product2['name'])
-        console.log(Product2.rating)
-        console.log(Product2.rating.count)
-        Product2.fun();
+        // const message = object.message
+        const {message,price} = object
+        console.log(message)
+        console.log(price)    
 
-        console.log(JSON.stringify(Product2))
-        console.log(typeof JSON.stringify(Product2))
-        
-        const jsonString = JSON.stringify(Product2)
-        console.log(JSON.parse(jsonString))
+        const object2 = {
+            // message : message
+            message
+        }
+
+        console.log(object2)
     </script>
 </body>
 </html>
