@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom-ex</title>
+</head>
+<body>
+    <p>YouTube Subscribe Button</p>
+    <button onclick=" subscribe()" 
+     class="sub-btn">Subscribe</button>
+
+     <p>Amazon Shippping Calculator</p>
+     <input placeholder="cost of order" class="js-input" onkeydown="
+        handleKey()
+     ">
+     <button onclick="calculateTotal()">Calculate</button>
+
+     <p class="cost"></p>
+
+    <script>
+
+        function subscribe(){
+            const btnElement = document.querySelector('.sub-btn');
+
+            if (btnElement.innerText === 'Subscribe'){
+            btnElement.innerHTML = 'Subscribed'
+            } else {
+            btnElement.innerHTML = 'Subscribe'
+            }
+        }
+
+       
+
+        function calculateTotal(){
+            const inputElement = document.querySelector('.js-input')
+
+            let cost = Number(inputElement.value)
+
+            if ( cost< 40){
+                cost+=10
+            }
+            document.querySelector('.cost').innerHTML = `$${cost}`;
+        }
+
+        function handleKey(){
+            if (event.key === 'Enter'){
+                calculateTotal()
+            }
+        }
+    </script>
+</body>
+</html>

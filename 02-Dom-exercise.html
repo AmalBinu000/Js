@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom-ex</title>
+    <style>
+        .sub-btn{
+            border: none;
+            border-radius: 20px;
+            padding: 10px;
+            background-color: black;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .is-subscribed{
+            background-color: rgb(185, 180, 180);
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <p>YouTube Subscribe Button</p>
+    <button onclick=" subscribe()" 
+     class="js-sub-btn sub-btn">Subscribe</button>
+
+     <p>Amazon Shippping Calculator</p>
+     <input placeholder="cost of order" class="js-input" onkeydown="
+        handleKey()
+     ">
+     <button onclick="calculateTotal()">Calculate</button>
+
+     <p class="cost"></p>
+
+    <script>
+
+        function subscribe(){
+            const btnElement = document.querySelector('.sub-btn');
+
+            if (btnElement.innerText === 'Subscribe'){
+            btnElement.innerHTML = 'Subscribed'
+            btnElement.classList.add('is-subscribed')
+            } else {
+            btnElement.innerHTML = 'Subscribe'
+            btnElement.classList.remove('is-subscribed')
+            }
+            
+        }
+
+       
+
+        function calculateTotal(){
+            const inputElement = document.querySelector('.js-input')
+
+            let cost = Number(inputElement.value)
+
+            if ( cost< 40){
+                cost+=10
+            }
+            document.querySelector('.cost').innerHTML = `$${cost}`;
+        }
+
+        function handleKey(){
+            if (event.key === 'Enter'){
+                calculateTotal()
+            }
+        }
+    </script>
+</body>
+</html>
