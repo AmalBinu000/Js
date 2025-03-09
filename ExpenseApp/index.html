@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            margin: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        input, button {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        input {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            outline: none;
+        }
+        input::placeholder {
+            color: #ddd;
+        }
+        button {
+            background: #ff7eb3;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #ff4f81;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.3s;
+        }
+        li:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        li {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Expense Tracker</h2>
+        <input type="number" id="budget" placeholder="Enter Budget">
+        <input type="text" id="category" placeholder="Category">
+        <input type="text" id="expenseName" placeholder="Expense Name">
+        <input type="number" id="expenseAmount" placeholder="Amount">
+        <button onclick="addExpense()">Add Expense</button>
+        <ul id="expenseList"></ul>
+        <h3>Budget: $<span id="budgetAmount">0</span></h3>
+        <h3>Total Expenses: $<span id="totalAmount">0</span></h3>
+        <h3>Balance: $<span id="balanceAmount">0</span></h3>
+    </div>
+    <script>
+        let budget = 0;
+        let total = 0;
+        function setBudget() {
+            budget = parseFloat(document.getElementById("budget").value) || 0;
+            document.getElementById("budgetAmount").innerText = budget.toFixed(2);
+            updateBalance();
+        }
+        document.getElementById("budget").addEventListener("input", setBudget);
+        
+        function addExpense() {
+            let category = document.getElementById("category").value;
+            let name = document.getElementById("expenseName").value;
+            let amount = parseFloat(document.getElementById("expenseAmount").value);
+            if (name === "" || isNaN(amount)) return;
+            
+            total += amount;
+            
+            let li = document.createElement("li");
+            li.innerHTML = `${category} - ${name} - $${amount} 
+            <button onclick="updateExpense(this, ${amount})">Edit</button>
+            <button onclick="removeExpense(this, ${amount})">X</button>`;
+            document.getElementById("expenseList").appendChild(li);
+            
+            document.getElementById("totalAmount").innerText = total.toFixed(2);
+            updateBalance();
+            
+            document.getElementById("category").value = "";
+            document.getElementById("expenseName").value = "";
+            document.getElementById("expenseAmount").value = "";
+        }
+        
+        function removeExpense(element, amount) {
+            element.parentElement.remove();
+            total -= amount;
+            document.getElementById("totalAmount").innerText = total.toFixed(2);
+            updateBalance();
+        }
+        
+        function updateExpense(element, oldAmount) {
+            let newAmount = parseFloat(prompt("Enter new amount:", oldAmount));
+            if (!isNaN(newAmount)) {
+                total = total - oldAmount + newAmount;
+                document.getElementById("totalAmount").innerText = total.toFixed(2);
+                element.parentElement.innerHTML = element.parentElement.innerHTML.replace(`$${oldAmount}`, `$${newAmount}`);
+                updateBalance();
+            }
+        }
+        
+        function updateBalance() {
+            let balance = budget - total;
+            document.getElementById("balanceAmount").innerText = balance.toFixed(2);
+        }
+    </script>
+</body>
+</html>

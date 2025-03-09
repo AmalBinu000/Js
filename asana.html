@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoga Community Tracker</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            margin: 50px;
+            background: linear-gradient(135deg, #56ab2f, #a8e063);
+            color: #fff;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        input, button, select {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        input, select {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            outline: none;
+        }
+        input::placeholder {
+            color: #ddd;
+        }
+        button {
+            background: #ff7eb3;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #ff4f81;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.3s;
+        }
+        li:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Yoga Community Tracker</h2>
+        <input type="text" id="username" placeholder="Your Name">
+        <input type="number" id="asanaCount" placeholder="Number of Asanas Done">
+        <select id="difficulty">
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+        </select>
+        <button onclick="addRecord()">Submit</button>
+        <ul id="recordList"></ul>
+    </div>
+    <script>
+        function addRecord() {
+            let username = document.getElementById("username").value;
+            let asanaCount = document.getElementById("asanaCount").value;
+            let difficulty = document.getElementById("difficulty").value;
+            if (username === "" || asanaCount === "") return;
+            
+            let li = document.createElement("li");
+            li.innerHTML = `${username} - ${asanaCount} Asanas - ${difficulty} 
+            <button onclick="removeRecord(this)">X</button>`;
+            document.getElementById("recordList").appendChild(li);
+            
+            document.getElementById("username").value = "";
+            document.getElementById("asanaCount").value = "";
+        }
+        
+        function removeRecord(element) {
+            element.parentElement.remove();
+        }
+    </script>
+</body>
+</html>
