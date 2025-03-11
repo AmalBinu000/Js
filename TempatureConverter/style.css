@@ -1,0 +1,42 @@
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: hsl(0, 0%, 96%);
+}
+form{
+    width: 300px;
+    height: 400px;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    margin: auto;
+    margin-top: 50px;
+}
+h1{
+    color: rgb(81, 129, 234);
+}
+#myInput{
+    width: 200px;
+    border-radius: 5px;
+    border:  solid rgb(50, 113, 230);
+    height: 20px;
+    margin: 5px;
+
+}
+label{
+    
+    font-size: 25px;
+}
+button{
+    border: none;
+    padding: 5px;
+    color: white;
+    border-radius: 5px;
+    background-color: rgb(81, 129, 234);
+    font-size: large;
+}
+p{
+    font-size: 25px;
+    color: rgb(213, 41, 41);
+}
