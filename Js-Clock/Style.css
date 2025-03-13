@@ -1,0 +1,16 @@
+body{
+    margin: 0;
+}
+#container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 100px;
+    background-color: rgb(87, 50, 205);
+}
+#clock{
+    font-family: monospace;
+    color: white;
+    
+}
